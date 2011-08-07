@@ -1,4 +1,6 @@
 Wordcloudy::Application.routes.draw do
+  resources :clouds
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
