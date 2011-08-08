@@ -9,6 +9,8 @@ gem 'sqlite3'
 gem 'rmagick'
 gem 'carrierwave'
 gem 'jquery-rails', '>= 1.0.12'
+gem 'nokogiri'
+gem 'sanitize'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -22,7 +24,6 @@ gem 'jquery-rails', '>= 1.0.12'
 
 # Bundle the extra gems:
 # gem 'bj'
-# gem 'nokogiri'
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'aws-s3', :require => 'aws/s3'
 
