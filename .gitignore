@@ -6,3 +6,6 @@ tmp/
 .DS_Store
 public/clouds/*
 public/uploads/*
+clouds/*
+update/*
+test/R/sandbox/*

@@ -30,20 +30,28 @@ args = commandArgs(TRUE)
 
 cloud_path <- args[1]
 words_path <- args[2]
+print("create corpus")
+system.time(words <- Corpus(URISource(words_path)))
 
-data(crude)
+print("remove punctuation")
+system.time(words <- tm_map(words, removePunctuation))
+#print("remove stop words")
+#system.time(words <- tm_map(words, removeWords, stopwords() ))
 
-#words <- crude
+print("term doc matrix")
+system.time(tdm <- TermDocumentMatrix(words, control = list(weighting = weightTf, stopwords = TRUE)))
 
-words <- Corpus(URISource(words_path))
-
-words <- tm_map(words, removePunctuation)
-words <- tm_map(words, function(x)removeWords(x,stopwords()))
-
-tdm <- TermDocumentMatrix(words)
 m <- as.matrix(tdm)
-v <- sort(rowSums(m),decreasing=TRUE)
-d <- data.frame(word = names(v),freq=v)
+print("sort")
+system.time(v <- sort(rowSums(m),decreasing=TRUE))
+print("data frame")
+system.time(d <- data.frame(word = names(v),freq=v))
+
+width <- 16
+height <- 20
+
+max.word <- width - (width * 0.10)
+min.word <- max.word / (2 * max.word)
 
 
 #pal <- brewer.pal(9,"BuGn")
@@ -54,14 +62,15 @@ pal2 <- brewer.pal(8,"Dark2")
 #vfont=c("gothic english","plain")
 
 
-png(cloud_path, width=900,height=700)
+#png(cloud_path, width=900,height=700)
 
+pdf(cloud_path, width = width, height = height)
 #wordcloud(d$word,d$freq,c(8,.5),2,,FALSE,.1)
 
 #wordcloud(d$word,d$freq,c(8,.3),2,100,TRUE,.15, pal,vfont=c("sans serif","plain"))
 
 #wordcloud(d$word,d$freq,c(8,.3),2,100,TRUE,,.15,pal,vfont=c("serif","plain"))
 
-wordcloud(d$word, d$freq, scale=c(15,.5), min.freq=3, max.words=200, random.order = FALSE, rot.per=.15, colors=pal2, use.r.layout = FALSE)
+wordcloud(d$word, d$freq, scale=c(max.word,min.word), min.freq=3, max.words=200, random.order = FALSE, rot.per=.15, colors=pal2, use.r.layout = FALSE)
 
 dev.off()
