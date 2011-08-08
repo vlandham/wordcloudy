@@ -1,4 +1,4 @@
-<%= form_for(@cloud) do |f| %>
+<%= form_for @cloud, :html => {:multipart => true} do |f| %>
   <% if @cloud.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@cloud.errors.count, "error") %> prohibited this cloud from being saved:</h2>
@@ -12,8 +12,13 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :url %><br />
-    <%= f.text_field :url %>
+    <%= f.label :remote_document_url %><br />
+    <%= f.text_field :remote_document_url %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :document %><br />
+    <%= f.file_field :document %>
   </div>
 
   <div class="actions">

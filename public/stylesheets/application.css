@@ -97,3 +97,20 @@
   display: block;
   font-style: italic;
 }
+
+#footer {
+  height: 50px;
+}
+
+
+#cloud_preview img {
+  border-right: #444444 2px solid;
+  border-bottom: #444444 2px solid;
+  
+}
+
+#cloud_preview_loading {
+  width: 400px;
+  height: 400px;
+  background-color: #e3e3e3;
+}

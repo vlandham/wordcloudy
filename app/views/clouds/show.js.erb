@@ -1,0 +1,7 @@
+<% if @cloud.previewed_at %>
+$("div#cloud_preview").html("<%=raw escape_javascript(link_to image_tag(@cloud.preview_small_url), @cloud.preview_url, :class => "zoom") %>");
+$("div#cloud_preview_loading").remove();
+$('.zoom').zoomy();
+<% else %>
+setTimeout(updatePreview, 3000);
+<% end %>

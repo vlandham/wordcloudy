@@ -1,17 +1,13 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Url:</b>
-  <%= @cloud.url %>
-</p>
-
-<p>
-  <b>Document:</b>
-  <%= @cloud.document %>
-</p>
-
-<a class="zoom" href="lucyZoom.jpg"><img src="lucyTn.jpg" /></a>
-
+<% if !@cloud.previewed_at %>
+<div id="cloud_preview_loading" data-id="<%= @cloud.id %>">
+</div>
+<div id="cloud_preview">
+</div>
+<% else %>
+<div id="cloud_preview">
+  <%= link_to image_tag(@cloud.preview_small_url), @cloud.preview_url, :class => "zoom" %>
+</div>
+<% end %>
 
 <%= link_to 'Edit', edit_cloud_path(@cloud) %> |
 <%= link_to 'Back', clouds_path %>
