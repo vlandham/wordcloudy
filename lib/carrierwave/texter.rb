@@ -42,7 +42,7 @@ module CarrierWave
       return filename, "" # In case we weren't able to split the extension
     end
     
-    def extract_from_txt file_path, temp_path
+    def extract_from_text file_path, temp_path
       file_html = File.open(file_path).read
       ic = Iconv.new('UTF-8//IGNORE', 'UTF-8')
       valid_string = ic.iconv(file_html + ' ')[0..-2]

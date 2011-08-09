@@ -36,7 +36,7 @@ class Cloud < ActiveRecord::Base
     img_list = img_list.read(pdf_location)
     img_list.new_image(img_list.first.columns, img_list.first.rows) { self.background_color = "white" }
     img = img_list.reverse.flatten_images
-    preview = img.resize_to_fit(800, 1000)
+    preview = img.resize_to_fit(600, 800)
     preview.write preview_full_location
     thumb = preview.scale(0.75)
     thumb.write preview_small_full_location    
