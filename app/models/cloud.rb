@@ -13,6 +13,10 @@ class Cloud < ActiveRecord::Base
     File.join("/clouds", self.id.to_s, "cloud_preview_small.png")
   end
   
+  def preview_thumb_url
+     File.join("/clouds", self.id.to_s, "cloud_thumb_small.png")
+  end
+  
   def preview_full_location
     File.expand_path(File.join(RAILS_ROOT, "public", preview_url))
   end
@@ -21,11 +25,15 @@ class Cloud < ActiveRecord::Base
     File.expand_path(File.join(RAILS_ROOT, "public", preview_small_url))
   end
   
+  def preview_thumb_full_location
+    File.expand_path(File.join(RAILS_ROOT, "public", preview_thumb_url))
+  end
+  
   def pdf_location
     File.expand_path(File.join(RAILS_ROOT, "clouds", self.id.to_s, "cloud.pdf"))
   end
   
-  def create_cloud_preview
+  def create_cloud
     r_script = File.expand_path(File.join(RAILS_ROOT, "R", R_SCRIPT_NAME))
     FileUtils.mkdir_p(File.dirname(pdf_location))
     FileUtils.mkdir_p(File.dirname(preview_full_location))
@@ -38,8 +46,11 @@ class Cloud < ActiveRecord::Base
     img = img_list.reverse.flatten_images
     preview = img.resize_to_fit(600, 800)
     preview.write preview_full_location
-    thumb = preview.scale(0.75)
-    thumb.write preview_small_full_location    
+    small = preview.scale(0.75)
+    small.write preview_small_full_location
+     
+    thumb = preview.resize_to_fill(240, 240)
+    thumb.write preview_thumb_full_location
     
     update_attribute(:previewed_at, Time.now)
   end

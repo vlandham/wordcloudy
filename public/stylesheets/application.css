@@ -235,6 +235,13 @@ font-size: 16px;
   height: 20px;
 }
 
+table#favorites td {
+  width: 33%;
+  vertical-align:middle;
+  padding-bottom:5px;
+  background-color: white;
+}
+
 
 #cloud_preview img {
   border-right: #444444 2px solid;

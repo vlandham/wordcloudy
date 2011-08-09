@@ -4,7 +4,7 @@ task :create_cloud => :environment do
   cloud = Cloud.find(ENV["CLOUD_ID"])
   
   if cloud
-    cloud.create_cloud_preview
+    cloud.create_cloud
   end
   
 end

@@ -46,7 +46,7 @@ class CloudsController < ApplicationController
     respond_to do |format|
       if @cloud.save
         call_rake :create_cloud, :cloud_id => @cloud.id
-        format.html { redirect_to(@cloud, :notice => 'Cloud was successfully created.') }
+        format.html { redirect_to(@cloud) }
         format.xml  { render :xml => @cloud, :status => :created, :location => @cloud }
       else
         format.html { render :action => "new" }
