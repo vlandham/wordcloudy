@@ -34,9 +34,9 @@ class CloudsController < ApplicationController
   end
 
   # GET /clouds/1/edit
-  def edit
-    @cloud = Cloud.find(params[:id])
-  end
+  # def edit
+  #   @cloud = Cloud.find(params[:id])
+  # end
 
   # POST /clouds
   # POST /clouds.xml

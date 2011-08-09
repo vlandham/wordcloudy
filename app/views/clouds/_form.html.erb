@@ -12,12 +12,14 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :remote_document_url %><br />
+    <%= f.label :remote_document_url, "Paste In A Web Page URL" %><br />
     <%= f.text_field :remote_document_url %>
   </div>
   
+  <h3>OR</h3>
+  
   <div class="field">
-    <%= f.label :document %><br />
+    <%= f.label :document, "Upload A Document" %><br />
     <%= f.file_field :document %>
   </div>
 
