@@ -1,16 +1,24 @@
-<h1>WordCloudy</h1>
-<h2>Word Clouds As Art</h2>
 
+<p class="description">Making a new word cloud is quick and easy with WordCloudy.</p> 
 
-<p>Making a new word cloud is quick and easy with WordCloudy. Upload a document or paste in a website and WordCloudy will do the rest.</p>
+<h3 class="command">Get Started Now!</h3>
 
-<p>WordCloudy can read:</p>
-<ul>
-  <li>Text Files (.txt)</li>
-  <li>Web pages (.html)</li>
-  <li>PDF Documents (.pdf)</li>
-</ul>
+<p class="description_small">Upload a document or paste in a webpage link and WordCloudy will do the rest.</p>
+<div class="container">
+  <div class="prepend-1 span-10">
+    <div id="wordcloudy_form">
+      <%= render 'form' %>
+    </div>    
+  </div>
+  <div id="wordcloudy_notes" class="span-6 last">
+    <p>WordCloudy Understands:</p>
+    <ul>
+      <li>Text Files (.txt)</li>
+      <li>Web pages (.html)</li>
+      <li>PDF Documents (.pdf)</li>
+    </ul>  
+  </div>
+  
+</div>
 
-
-<%= render 'form' %>
 

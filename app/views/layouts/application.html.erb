@@ -2,14 +2,15 @@
 <html>
 <head>
   <title>WordCloudy</title>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:700' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag "blueprint/screen.css" %>
   <%= stylesheet_link_tag "blueprint/print.css", :media => "print" %>
   <!--[if lt IE 8]><%= stylesheet_link_tag "blueprint/ie.css" %><![endif]-->
   <%= stylesheet_link_tag "blueprint/plugins/buttons/screen.css" %>
-    
   <%= stylesheet_link_tag "scaffold" %>
   <%= stylesheet_link_tag "zoomy" %>
   <%= stylesheet_link_tag "application" %>
+
 
   <%= javascript_include_tag :defaults %>
   <%= javascript_include_tag "jquery.zoomy.min.js" %>
@@ -19,31 +20,30 @@
 </head>
 <body>
 <div id="wrapper">
-  <div id="navigation-container">
-    <div id="navigation">
-      <ul class="left">
-        <li><%= link_to "Make A Cloud", root_path %></li>
-        <li><%= link_to "Favorite Clouds", clouds_path %></li>
-      </ul>
-      <ul class="right">
-      </ul>
-    </div>
-  </div>
-  <div id="notifications">
-    <% flash.each do |key, msg| %>
-        <%= content_tag :div, msg, :class => [key, " message"], :id => "notice_ #{key}" %>
-    <% end %>
-  </div>
-  <div class="container">
+  <div id="content-area">
     <div id="header">
-      
+        <%= link_to image_tag("cloud.png", :id => "logo"), root_path,  %>
+        <h2 class="tagline">Word Clouds As Art</h2>
+        <div id="navigation">
+          <ul>
+            <li><%= link_to "Make A Cloud", root_path %></li>
+            <li><%= link_to "Favorite Clouds", clouds_path %></li>
+          </ul>
+        </div>     
     </div>
-    <div id="content">
-      <%= yield %>
+    <div id="notifications">
+      <% flash.each do |key, msg| %>
+          <%= content_tag :div, msg, :class => [key, " message"], :id => "notice_ #{key}" %>
+      <% end %>
     </div>
-  </div>
-  <div id="footer" class="clearfix">
-    <%= yield :scripts %>    
+    <div class="container">
+      <div id="content">
+        <%= yield %>
+      </div>
+    </div>
+    <div id="footer" class="clearfix">
+      <%= yield :scripts %>    
+    </div>    
   </div>
 </div>
 
