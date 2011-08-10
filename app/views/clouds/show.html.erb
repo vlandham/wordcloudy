@@ -1,3 +1,9 @@
+<% content_for :head do %>
+<%= javascript_include_tag "jquery.zoomy.min.js" %>
+<%= javascript_include_tag "raphael-min.js" %>
+<%= javascript_include_tag "helvetica.js" %>
+<% end %>
+
 <% if !@cloud.previewed_at %>
 <div id="cloud_preview">
   <div id="cloud_preview_loading" data-id="<%= @cloud.id %>">

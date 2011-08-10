@@ -12,13 +12,11 @@
 
 
   <%= javascript_include_tag :defaults %>
-  <%= javascript_include_tag "jquery.zoomy.min.js" %>
-  <%= javascript_include_tag "raphael-min.js" %>
-  <%= javascript_include_tag "helvetica.js" %>
   
+  <%= yield :head %>  
 
   <%= csrf_meta_tag %>
-  <%= yield :head %>
+
 </head>
 <body>
 <div id="wrapper">
