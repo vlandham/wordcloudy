@@ -258,14 +258,19 @@ table#favorites td {
   background-color: white;
 }
 
+#cloud_preview {
+  width: 450px;
+  height: 565px;
+  margin:auto;
+}
 
 #cloud_preview img {
-  border-right: #444444 2px solid;
-  border-bottom: #444444 2px solid;
+  border: #444444 2px solid;
 }
 
 #cloud_preview_loading {
-  width: 400px;
-  height: 400px;
-  background-color: #e3e3e3;
+  height:100%;
+/*  padding:20px;*/
+  border: #444444 2px solid;
+/*  background-color: #e3e3e3;*/
 }
