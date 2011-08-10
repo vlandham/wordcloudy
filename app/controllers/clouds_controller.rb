@@ -57,29 +57,29 @@ class CloudsController < ApplicationController
 
   # PUT /clouds/1
   # PUT /clouds/1.xml
-  def update
-    @cloud = Cloud.find(params[:id])
-
-    respond_to do |format|
-      if @cloud.update_attributes(params[:cloud])
-        format.html { redirect_to(@cloud, :notice => 'Cloud was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @cloud.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
+  # def update
+  #   @cloud = Cloud.find(params[:id])
+  # 
+  #   respond_to do |format|
+  #     if @cloud.update_attributes(params[:cloud])
+  #       format.html { redirect_to(@cloud, :notice => 'Cloud was successfully updated.') }
+  #       format.xml  { head :ok }
+  #     else
+  #       format.html { render :action => "edit" }
+  #       format.xml  { render :xml => @cloud.errors, :status => :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /clouds/1
   # DELETE /clouds/1.xml
-  def destroy
-    @cloud = Cloud.find(params[:id])
-    @cloud.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(clouds_url) }
-      format.xml  { head :ok }
-    end
-  end
+  # def destroy
+  #   @cloud = Cloud.find(params[:id])
+  #   @cloud.destroy
+  # 
+  #   respond_to do |format|
+  #     format.html { redirect_to(clouds_url) }
+  #     format.xml  { head :ok }
+  #   end
+  # end
 end
