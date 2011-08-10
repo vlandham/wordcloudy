@@ -41,18 +41,23 @@ class CloudsController < ApplicationController
   # POST /clouds
   # POST /clouds.xml
   def create
-    @cloud = Cloud.new(params[:cloud])
-
-    respond_to do |format|
-      if @cloud.save
-        call_rake :create_cloud, :cloud_id => @cloud.id
-        format.html { redirect_to(@cloud) }
-        format.xml  { render :xml => @cloud, :status => :created, :location => @cloud }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @cloud.errors, :status => :unprocessable_entity }
+    begin
+      @cloud = Cloud.new(params[:cloud])
+      respond_to do |format|
+        if @cloud.save
+          call_rake :create_cloud, :cloud_id => @cloud.id
+          format.html { redirect_to(@cloud) }
+          format.xml  { render :xml => @cloud, :status => :created, :location => @cloud }
+        else
+          format.html { render :action => "new" }
+          format.xml  { render :xml => @cloud.errors, :status => :unprocessable_entity }
+        end
       end
+    rescue
+      @cloud = Cloud.new
+      redirect_to(new_cloud_path, :notice => "Problem with Upload. Please Try Something Different")
     end
+
   end
 
   # PUT /clouds/1

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110807203735) do
+ActiveRecord::Schema.define(:version => 20110810201849) do
 
   create_table "clouds", :force => true do |t|
     t.string   "url"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(:version => 20110807203735) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "previewed_at"
+    t.boolean  "error",        :default => false
   end
 
 end

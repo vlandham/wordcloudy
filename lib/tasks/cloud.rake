@@ -7,4 +7,6 @@ task :create_cloud => :environment do
     cloud.create_cloud
   end
   
+  puts "rake task end"
+  
 end

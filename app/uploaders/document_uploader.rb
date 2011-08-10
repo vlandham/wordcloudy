@@ -1,8 +1,8 @@
 # encoding: utf-8
-require File.join(Rails.root, "lib", "carrierwave", "texter")
+
 
 class DocumentUploader < CarrierWave::Uploader::Base
-  include CarrierWave::Texter
+  # include CarrierWave::Texter
 
   # Include RMagick or ImageScience support:
   # include CarrierWave::RMagick
@@ -18,9 +18,9 @@ class DocumentUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
   
-  version :text do
-    process :texter
-  end
+  # version :text do
+  #    process :texter
+  #  end
   
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
