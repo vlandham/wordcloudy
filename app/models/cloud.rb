@@ -5,6 +5,8 @@ R_SCRIPT_NAME = "cloud.R"
 class Cloud < ActiveRecord::Base
   mount_uploader :document, DocumentUploader
   
+  validates_presence_of :document, :message => " Missing! Upload a document first."
+  
   def preview_url
     File.join("/clouds", self.id.to_s, "cloud_preview.png")
   end
