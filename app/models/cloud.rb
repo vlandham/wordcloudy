@@ -21,6 +21,10 @@ class Cloud < ActiveRecord::Base
     File.join("/clouds", self.id.to_s, filename)
   end
   
+  def self.preview_error_url
+    File.join("/images", "fail_cloud.png")
+  end
+  
   def preview_path(type = nil)
     url = preview_url(type)
     File.expand_path(File.join(Rails.root.to_s, "public", url))
@@ -35,7 +39,7 @@ class Cloud < ActiveRecord::Base
   end
   
   def document_path
-    File.expand_path(File.join(Rails.root, "public", document_url))
+    File.expand_path(document_url)
   end
   
   def create_previews
@@ -62,8 +66,8 @@ class Cloud < ActiveRecord::Base
       Texter.to_text(document_path, text_path)
       system("R --slave --args #{pdf_path} #{text_path} < #{R_SCRIPT}")
       create_previews
-    rescue
-      update_attribute(:error, true)
+    #rescue
+    #  update_attribute(:error, true)
     ensure
       update_attribute(:previewed_at, Time.now)
     end

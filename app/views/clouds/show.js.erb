@@ -1,5 +1,9 @@
 <% if @cloud.previewed_at %>
+<% if @cloud.error %>
+$("div#cloud_preview").html("<%=raw escape_javascript(image_tag(Cloud.preview_error_url) ) %>");
+<% else %>
 $("div#cloud_preview").html("<%=raw escape_javascript(link_to image_tag(@cloud.preview_url(:small)), @cloud.preview_url, :class => "zoom") %>");
+<% end %>
 $("div#cloud_preview_loading").remove();
 $('.zoom').zoomy();
 <% else %>
