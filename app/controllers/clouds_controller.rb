@@ -41,23 +41,31 @@ class CloudsController < ApplicationController
   # POST /clouds
   # POST /clouds.xml
   def create
+    valid = false
     begin
-      @cloud = Cloud.new(params[:cloud])
-      respond_to do |format|
-        if @cloud.save
-          call_rake :create_cloud, :cloud_id => @cloud.id
-          format.html { redirect_to(@cloud) }
-          format.xml  { render :xml => @cloud, :status => :created, :location => @cloud }
-        else
-          format.html { render :action => "new" }
-          format.xml  { render :xml => @cloud.errors, :status => :unprocessable_entity }
-        end
-      end
-    rescue
-      @cloud = Cloud.new
-      redirect_to(new_cloud_path, :notice => "Problem with Upload. Please Try Something Different")
-    end
+      par = params[:cloud].except(:remote_document_url)
+      @cloud = Cloud.new(par)
+      # this may fail:
+      @cloud.remote_document_url = params[:cloud][:remote_document_url]
+      valid = true
+    rescue CarrierWave::DownloadError
+      @cloud.errors.add(:remote_document_url, "This url doesn't appear to be valid")
+    rescue CarrierWave::IntegrityError
+      @cloud.errors.add(:remote_document_url, "This url does not appear to point to a valid site")
+    rescue OpenURI::HTTPError
+      @cloud.errors.add(:remote_document_url, "This url does not appear to point to a valid site")
+    end 
 
+    respond_to do |format|
+      # validate and save if no exceptions were thrown above
+      if valid && @cloud.save
+        call_rake :create_cloud, :cloud_id => @cloud.id
+        format.html { redirect_to(@cloud) }
+        format.xml  { render :xml => @cloud, :status => :created, :location => @cloud }
+      else
+       render :action => 'new'
+      end
+    end
   end
 
   # PUT /clouds/1

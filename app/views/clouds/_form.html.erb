@@ -1,7 +1,7 @@
 <%= form_for @cloud, :html => {:multipart => true} do |f| %>
   <% if @cloud.errors.any? %>
     <div id="error_explanation">
-      <% @cloud.errors.full_messages.each do |msg| %>
+      <% @cloud.errors.each do |attr, msg| %>
         <p><%= msg %></p>
       <% end %>
     </div>

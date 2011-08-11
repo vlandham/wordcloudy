@@ -4,7 +4,7 @@
 <% @clouds.each_slice(3) do |cloud_slice| %>
   <tr>
     <% cloud_slice.each do |cloud| %>
-    <td><%= link_to image_tag(cloud.preview_thumb_url), cloud %></td>
+    <td><%= link_to image_tag(cloud.preview_url(:thumb)), cloud %></td>
     <% end %>
   </tr>
 <% end %>

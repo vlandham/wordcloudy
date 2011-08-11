@@ -6,9 +6,7 @@ PDF_BOX_JAR = File.expand_path(File.join(Rails.root, "java", "pdfbox-app-1.6.0.j
 
 
 class Texter
-    def self.to_text(doc_path)
-      original_path = File.expand_path(File.join(Rails.root, "public", doc_path))
-      text_file_path = File.expand_path(File.join(Rails.root, "public", doc_path + ".txt"))
+    def self.to_text(original_path, text_file_path)
       puts "---------"
       puts "or: #{original_path}"
       puts "tx: #{text_file_path}"

@@ -11,7 +11,7 @@
 </div>
 <% else %>
 <div id="cloud_preview">
-  <%= link_to image_tag(@cloud.preview_small_url), @cloud.preview_url, :class => "zoom" %>
+  <%= link_to image_tag(@cloud.preview_url(:small)), @cloud.preview_url, :class => "zoom" %>
 </div>
 <% end %>
 
